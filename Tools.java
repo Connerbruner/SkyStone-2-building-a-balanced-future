@@ -78,24 +78,26 @@ class Tools {
             FileReader fileRead = new FileReader( txt );
             BufferedReader reader = new BufferedReader( fileRead );
             
-            reader.close( );
-            String                              match   ="hello";
+            
+            String match   ="hello";
             ArrayList <String> matches = new ArrayList <>(  );
             while(match!=null)
             {
-                match= reader.readLine( );
+                match = reader.readLine( );
                 if(match!=null)
                 {
                     matches.add(match);
                 }
             }
+            reader.close( );
             FileWriter writer=null;
             try {
                 writer = new FileWriter( file );
                 for(int i=1; i<matches.size(); i++)
                 {
-                    writer.write( matches.get( i ) );
+                    writer.write( matches.get( i )+"\n" );
                 }
+                writer.close( );
                 return matches.get( 0 );
             }
             catch ( IOException e ) {
@@ -121,12 +123,23 @@ class Tools {
     }
 
     
-    /**
-     *
-     */
-    public void wait ( int time ) {
+    public void timer ( int time ) {
         long startTime = System.currentTimeMillis( );
-        while ( startTime + time > System.currentTimeMillis( ) ) ;
+        while ( startTime + time > System.currentTimeMillis( ) )
+        {
+            long sec = ((startTime + time-System.currentTimeMillis( ))/1000)%60;
+            int min =  (int)(((startTime + time-System.currentTimeMillis( ))/1000)/60);
+            if(sec<10)
+            {
+                System.out.print("\r "+ min+" : 0"+sec );
+            }
+            else
+            {
+                System.out.print("\r "+ min+" : "+sec );
+            }
+            System.out.flush();
+            
+        }
     }
 
     
