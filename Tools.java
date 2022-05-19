@@ -25,7 +25,7 @@ class Tools {
             ArrayList<Integer> teamQueue = new ArrayList <>(  );
             writer = new FileWriter( fileToBeModified );
     
-            for(int r=rounds; r>=0 || !teamQueue.isEmpty(); r--)
+            for(int r=rounds; r>0 || !teamQueue.isEmpty(); r--)
             {
     
                 for ( int j : arr ) {
