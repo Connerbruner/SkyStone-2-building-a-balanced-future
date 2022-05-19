@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 class Tools {
@@ -78,14 +77,36 @@ class Tools {
             File txt = new File( file );
             FileReader fileRead = new FileReader( txt );
             BufferedReader reader = new BufferedReader( fileRead );
-
+            
             reader.close( );
-            return reader.readLine();
+            String                              match   ="hello";
+            ArrayList <String> matches = new ArrayList <>(  );
+            while(match!=null)
+            {
+                match= reader.readLine( );
+                if(match!=null)
+                {
+                    matches.add(match);
+                }
+            }
+            FileWriter writer=null;
+            try {
+                writer = new FileWriter( file );
+                for(int i=1; i<matches.size(); i++)
+                {
+                    writer.write( matches.get( i ) );
+                }
+                return matches.get( 0 );
+            }
+            catch ( IOException e ) {
+                e.printStackTrace( );
+            }
+ 
         } catch ( IOException e ) {
             e.printStackTrace( );
             return null;
         }
-        
+        return null;
         
     }
     
