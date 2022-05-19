@@ -123,10 +123,17 @@ class Tools {
     }
 
     
+<<<<<<< HEAD
+=======
+    /**
+     *
+     */
+>>>>>>> origin/main
     public void timer ( int time ) {
         long startTime = System.currentTimeMillis( );
         while ( startTime + time > System.currentTimeMillis( ) )
         {
+<<<<<<< HEAD
             long sec = ((startTime + time-System.currentTimeMillis( ))/1000)%60;
             int min =  (int)(((startTime + time-System.currentTimeMillis( ))/1000)/60);
             if(sec<10)
@@ -139,6 +146,15 @@ class Tools {
             }
             System.out.flush();
             
+=======
+            long sec = ((startTime + time-System.currentTimeMillis( ))*1000)%60;
+            int min =  (int)(((startTime + time-System.currentTimeMillis( ))*1000)/60);
+            if(sec<10)
+            {
+                System.out.println( min+" : 0"+sec+GO_BACK );
+            }
+            System.out.println( min+" : "+sec+GO_BACK );
+>>>>>>> origin/main
         }
     }
 
