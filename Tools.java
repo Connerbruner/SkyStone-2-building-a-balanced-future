@@ -25,7 +25,7 @@ class Tools {
             ArrayList<Integer> teamQueue = new ArrayList <>(  );
             writer = new FileWriter( fileToBeModified );
     
-            for(int r=0; r<rounds && teamQueue.isEmpty(); r++)
+            for(int r=rounds; r>=0 || !teamQueue.isEmpty(); r--)
             {
     
                 for ( int j : arr ) {
@@ -35,13 +35,22 @@ class Tools {
                 {
                     int team1= random( 0 , teamQueue.size( ) - 1 );
                     int team2= random( 0 , teamQueue.size( ) - 1 );
-                    while( ! Objects.equals( teamQueue.get( team1 ) , teamQueue.get( team2 ) ) )
+                    while(teamQueue.get(team1).equals(teamQueue.get(team2)))
                     {
                         team2 = random( 0 , teamQueue.size( ) - 1 );
                     }
-                    writer.write( teamQueue.get( team1 )  +" , "+ teamQueue.get( team1 ));
-                    teamQueue.remove( team1 );
+                    writer.write( teamQueue.get( team1 )  +" , "+ teamQueue.get( team2 )+"\n");
+                    if(team1>team2)
+                    {
+                    teamQueue.remove( team1 ); 
                     teamQueue.remove( team2 );
+                    }
+                    else
+                    {
+                    teamQueue.remove( team2 ); 
+                    teamQueue.remove( team1 );
+                    }
+
                 }
             }
                 
