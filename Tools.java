@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 class Tools {
     //the Colors
-    public static final String GO_BACK = "\"\\u001B[A\"";
     public static final String SCREEN_CLEAR = "\033[H\033[2J";
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
@@ -123,17 +122,12 @@ class Tools {
     }
 
     
-<<<<<<< HEAD
-=======
-    /**
-     *
-     */
->>>>>>> origin/main
+
     public void timer ( int time ) {
         long startTime = System.currentTimeMillis( );
         while ( startTime + time > System.currentTimeMillis( ) )
         {
-<<<<<<< HEAD
+
             long sec = ((startTime + time-System.currentTimeMillis( ))/1000)%60;
             int min =  (int)(((startTime + time-System.currentTimeMillis( ))/1000)/60);
             if(sec<10)
@@ -145,16 +139,6 @@ class Tools {
                 System.out.print("\r "+ min+" : "+sec );
             }
             System.out.flush();
-            
-=======
-            long sec = ((startTime + time-System.currentTimeMillis( ))*1000)%60;
-            int min =  (int)(((startTime + time-System.currentTimeMillis( ))*1000)/60);
-            if(sec<10)
-            {
-                System.out.println( min+" : 0"+sec+GO_BACK );
-            }
-            System.out.println( min+" : "+sec+GO_BACK );
->>>>>>> origin/main
         }
     }
 
@@ -174,7 +158,58 @@ class Tools {
         System.out.println( str );
         String skip = scanner.nextLine( );
         boolean yesSkip = skip.equals( "yes" ) || skip.equals( "Yes" ) || skip.equals( "Y" ) || skip.equals( "y" );
-        return ! yesSkip;
+        return yesSkip;
+    }
+
+    public int input( String str )
+    {
+        System.out.println( str );
+        return scanner.nextInt();
+    }
+    public void match()
+    {
+        String team = nexMatch( "Match.txt" );
+        System.out.println( "WELCOME TO TODAY'S MATCH " );
+        System.out.println( "OUR TEAM IS "+team );
+        while(choice( "Are you ready to Start? " ));
+        
+        System.out.print( SCREEN_CLEAR );
+        System.out.println( "Auto Starting in " );
+        timer(10000);
+        
+        System.out.print( SCREEN_CLEAR );
+        System.out.println( "Auto ending in " );
+        timer(30000);
+        
+        System.out.print( SCREEN_CLEAR );
+        System.out.println( "TeleOP Starting in " );
+        timer(10000);
+    
+        System.out.print( SCREEN_CLEAR );
+        System.out.println( "TeleOP Ending in " );
+        timer(120000);
+    
+        System.out.print( SCREEN_CLEAR );
+        System.out.println( "Game ending ending in " );
+        timer(30000);
+        System.out.print( SCREEN_CLEAR );
+        System.out.println( "GAME COMPLETE" );
+        int height = input( "How tall was was this teams tower? " );
+        
+        int stone1 = input( "How high is capstone #1 " );
+        int stone2 = input( "How high is capstone #2 " );
+        
+        int sky1 = input( "How high is SkyStone #1 " );
+        int sky2 = input( "How high is SkyStone #2 " );
+        
+        int stonesU = input( "How many items are on the hub but not connected " );
+        int stones = input( "How many items are on the hub and connected " );
+        
+        int hub = input( "Is the hub under tape (0 or 1)" );
+        
+        int penalties = input( "Take off any points for penalties " );
+        int total = height+(stone1*3)+(stone2*3)+(sky1*2)+(sky2*2)+(stonesU*2)+(stones*4)+(hub*7)-penalties;
+        System.out.println("FINAL SCORE "+total);
     }
 
     
